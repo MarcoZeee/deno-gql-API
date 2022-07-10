@@ -7,7 +7,7 @@ import resolvers from './resolvers.ts'
 
 const PORT = 8080;
 const server = new Server({
-  handler: async (req: any) => {
+  handler: async (req: Request) => {
     const { pathname } = new URL(req.url)
 
     return pathname === '/graphql'

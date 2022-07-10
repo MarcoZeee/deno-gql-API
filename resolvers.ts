@@ -19,7 +19,7 @@ type argsTypeUpdate = {
 const resolvers = {
   Query: {
     hello: () => `Hello World!`,
-    allProducts: (_root: any, args: argsTypeQuery) => {
+    allProducts: (_root: unknown, args: argsTypeQuery) => {
         if(args.price) {
             return products.filter(product => product.price <= args.price!);
         }
@@ -28,12 +28,12 @@ const resolvers = {
         }
         return products;
     },
-    findProduct: (_root: any, args: {id: string}) => {
+    findProduct: (_root: unknown, args: {id: string}) => {
         return products.find(product => product.id === args.id);
     }
   },
   Mutation: {
-    addProduct: (_root: any, args: argsTypeAdd) => {
+    addProduct: (_root: unknown, args: argsTypeAdd) => {
         const newProduct = {
             id: crypto.randomUUID(),
             name: args.name,
@@ -48,7 +48,7 @@ const resolvers = {
         }
         return newProduct;
     },
-    updatePrice: (_root: any, args: argsTypeUpdate) => {
+    updatePrice: (_root: unknown, args: argsTypeUpdate) => {
         const newPrice = args.price;
         const product = products.find(product => product.id === args.id);
         if(!product) {
@@ -62,7 +62,7 @@ const resolvers = {
             throw new Error(e.message);
         }
     },
-    deleteProduct: (_root: any, args: {id: string}) => {
+    deleteProduct: (_root: unknown, args: {id: string}) => {
         const product = products.find(product => product.id === args.id);
         if(!product) {
             throw new Error(`Product with id ${args.id} not found`);
