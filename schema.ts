@@ -1,6 +1,4 @@
-import { gql } from 'https://deno.land/x/graphql_tag@0.0.1/mod.ts'
-
-
+import { gql } from "https://deno.land/x/graphql_tag@0.0.1/mod.ts";
 
 const typeDefs = gql`
   type Query {
@@ -17,20 +15,10 @@ const typeDefs = gql`
   }
 
   type Mutation {
-    addProduct(
-        name: String!
-        price: Float!
-        description: String
-    ): Product
-    updatePrice(
-        id: ID!
-        price: Float
-    ): Product
-    deleteProduct(
-        id: ID!
-    ): [Product]
+    addProduct(name: String!, price: Float!, description: String): Product
+    updatePrice(id: ID!, price: Float): Product
+    deleteProduct(id: ID!): [Product]
   }
-
-`
+`;
 
 export default typeDefs;
